@@ -1,7 +1,7 @@
 ---
 layout: lesson
 root: ..
-title: Schedule for WashU: Room 1
+title: Schedule for WashU: Room 2
 level: novice
 ---
 

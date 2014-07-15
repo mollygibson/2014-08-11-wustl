@@ -1,6 +1,6 @@
 ---
 layout: lesson
-root: ..
+root: .
 title: Schedule for WashU: Room 1
 level: novice
 ---
