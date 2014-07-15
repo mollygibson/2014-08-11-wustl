@@ -1,14 +1,9 @@
 ---
 layout: lesson
 root: .
-title: WashU Schedule: Room 1
+title: WashU Room 1 Schedule
 ---
-
-
-# Day 1
-
-
-
+# Day 2
 <table class="table table-striped">
 <tr>
     <td> <b>When</b>               </td>
