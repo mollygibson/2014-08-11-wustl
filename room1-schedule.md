@@ -3,7 +3,7 @@ layout: lesson
 root: .
 title: WashU Room 1 Schedule
 ---
-# Day 2
+# Day 1
 <table class="table table-striped">
 <tr>
     <td> <b>When</b>               </td>
@@ -17,7 +17,7 @@ title: WashU Room 1 Schedule
 </tr>
 <tr>
     <td> 9:00-9:30      </td>
-    <td>  Introduction</td>
+    <td><a href="{{site.github.url}}/slides/intro.html">Introduction</a></td>
     <td> Molly Gibson       </td>
 </tr>
 <tr>
@@ -79,7 +79,7 @@ title: WashU Room 1 Schedule
 </tr>
 <tr>
     <td> 9:00-10:30     </td>
-    <td>  Intro Python  </td>
+    <td> <a href="{{site.github.url}}/novice/python/index.html"> Intro Python </a> </td>
     <td> Molly Gibson </td>
 </tr>
 <tr>
@@ -89,7 +89,7 @@ title: WashU Room 1 Schedule
 </tr>
 <tr>
     <td> 10:45-12:00    </td>
-    <td>  Intro Python</td>
+    <td> <a href="{{site.github.url}}/novice/python/index.html"> Intro Python </a></td>
     <td> Molly Gibson </td>
 </tr>
 <tr>
@@ -99,7 +99,7 @@ title: WashU Room 1 Schedule
 </tr>
 <tr>
     <td> 1:00-2:30     </td>
-    <td>  Intro Python </td>
+    <td> <a href="{{site.github.url}}/novice/python/index.html"> Intro Python </a></td>
     <td> Molly Gibson </td>
 </tr>
 <tr>
