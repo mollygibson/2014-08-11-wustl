@@ -218,13 +218,18 @@ print &#39;after the loop, letter is&#39;, letter</pre>
 <p><code>len</code> is much faster than any function we could write ourselves, and much easier to read than a two-line loop; it will also give us the length of many other things that we haven't met yet, so we should always use it when we can.</p>
 </div>
 
+### Challenges
 
 <div class="challenges">
-<h4 id="challenges">Challenges</h4>
 <ol style="list-style-type: decimal">
-<li><p>Python has a built-in function called <code>range</code> that creates a list of numbers: <code>range(3)</code> produces <code>[0, 1, 2]</code>, <code>range(2, 5)</code> produces <code>[2, 3, 4]</code>, and <code>range(2, 10, 3)</code> produces <code>[2, 5, 8]</code>. Using <code>range</code>, write a function that prints the <span class="math">\(N\)</span> natural numbers: <sub>~</sub>python print_N(3) 1 2 3 <sub>~</sub></p></li>
-<li><p>Exponentiation is built into Python: <sub>~</sub>python print 2**4 16 <sub>~</sub> It also has a function called <code>pow</code> that calculates the same value. Write a function called <code>expo</code> that uses a loop to calculate the same result.</p></li>
-<li><p>Python's strings have methods, just like NumPy's arrays. One of these is called <code>reverse</code>: <sub>~</sub>python print 'Newton'.reverse() notweN <sub>~</sub> Write a function called <code>rev</code> that does the same thing: <sub>~</sub>python print rev('Newton') notweN <sub>~</sub> As always, be sure to include a docstring.</p></li>
+<li><p>Exponentiation is built into Python: 
+<pre>print 2**4 
+16</pre> It also has a function called <code>pow</code> that calculates the same value. Write a function called <code>expo</code> that uses a loop to calculate the same result.</p></li>
+<li><p>Python's strings have methods, just like NumPy's arrays. One of these is called <code>reverse</code>: 
+<pre>print 'Newton'.reverse() 
+notweN </pre> Write a function called <code>rev</code> that does the same thing: 
+<pre>python print rev('Newton') 
+notweN </pre> As always, be sure to include a docstring.</p></li>
 </ol>
 </div>
 

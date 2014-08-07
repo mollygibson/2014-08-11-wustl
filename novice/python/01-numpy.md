@@ -515,7 +515,7 @@ print &#39;maximum inflammation for patient 0:&#39;, patient_0.max()</pre>
 
 
 <div class="challenges">
-<h4 id="challenges">Challenges</h4>
+<h3 id="challenges">Challenges</h3>
 <ol>
 <li>What is the maximum inflammation for all patients over the first 10 days?</li>
 <li>What is the average maximum inflammation for all patients over all days?</li>
@@ -606,11 +606,15 @@ minimum inflammation per day
 <p>The maximum value rises and falls perfectly smoothly, while the minimum seems to be a step function. Neither result seems particularly likely, so either there's a mistake in our calculations or something is wrong with our data.</p>
 </div>
 
+### Challenges
 
 <div class="challenges">
-<h4 id="challenges">Challenges</h4>
 <ol style="list-style-type: decimal">
-<li><p>Why do all of our plots stop just short of the upper end of our graph? Why are the vertical lines in our plot of the minimum inflammation per day not vertical?</p></li>
+<li><p>Modify the y-axis on the minimum inflammation per day plot to range from 0 to 6 so that you can see the entire range of the data.</p>
+<ul>
+<li><p><b>Hint:</b> you can use python built in help to determine how to set the min and max of the x and y axes: <code>help(pyplot.axis)</code></p></li>
+</ul>
+</li>
 <li><p>Create a plot showing the standard deviation of the inflammation data for each day across all patients.</p></li>
 </ol>
 </div>
@@ -658,11 +662,11 @@ plt.show()</pre>
 <p>The first two lines re-load our libraries as <code>np</code> and <code>plt</code>, which are the aliases most Python programmers use. The call to <code>loadtxt</code> reads our data, and the rest of the program tells the plotting library how large we want the figure to be, that we're creating three sub-plots, what to draw for each one, and that we want a tight layout. (Perversely, if we leave out that call to <code>plt.tight_layout()</code>, the graphs will actually be squeezed together more closely.)</p>
 </div>
 
+### Challenges
 
 <div class="challenges">
-<h4 id="challenges">Challenges</h4>
 <ol style="list-style-type: decimal">
-<li>Modify the program to display the three plots on top of one another instead of side by side.</li>
+<li>Modify the program to display the three plots on top of one another on the same plot instead of side by side.</li>
 </ol>
 </div>
 
