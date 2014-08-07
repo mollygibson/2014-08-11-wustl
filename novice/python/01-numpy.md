@@ -222,17 +222,6 @@ print &#39;weight in kilograms is now:&#39;, weight_kg, &#39;and weight in pound
 </div>
 
 
-<div class="challenges">
-<h4 id="challenges">Challenges</h4>
-<ol style="list-style-type: decimal">
-<li><p>Draw diagrams showing what variables refer to what values after each statement in the following program:</p>
-<pre class="sourceCode python"><code class="sourceCode python">mass = <span class="fl">47.5</span>
-age = <span class="dv">122</span>
-mass = mass * <span class="fl">2.0</span>
-age = age - <span class="dv">20</span></code></pre></li>
-<li><p>What does the following program print out? <sub>~</sub>python first, second = 'Grace', 'Hopper' third, fourth = second, first print third, fourth <sub>~</sub></p></li>
-</ol>
-</div>
 
 ### Manipulating Data
 
@@ -527,28 +516,14 @@ print &#39;maximum inflammation for patient 0:&#39;, patient_0.max()</pre>
 
 <div class="challenges">
 <h4 id="challenges">Challenges</h4>
-<p>A subsection of an array is called a <a href="../../gloss.html#slice">slice</a>. We can take slices of character strings as well:</p>
-</div>
-
-
-<div class="in">
-<pre>element = &#39;oxygen&#39;
-print &#39;first three characters:&#39;, element[0:3]
-print &#39;last three characters:&#39;, element[3:6]</pre>
-</div>
-
-<div class="out">
-<pre>first three characters: oxy
-last three characters: gen
-</pre>
-</div>
-
-
-<div class="challenges">
-<ol style="list-style-type: decimal">
-<li><p>What is the value of <code>element[:4]</code>? What about <code>element[4:]</code>? Or <code>element[:]</code>?</p></li>
-<li><p>What is <code>element[-1]</code>? What is <code>element[-2]</code>? Given those answers, explain what <code>element[1:-1]</code> does.</p></li>
-<li><p>The expression <code>element[3:3]</code> produces an <a href="../../gloss.html#empty-string">empty string</a>, i.e., a string that contains no characters. If <code>data</code> holds our array of patient data, what does <code>data[3:3, 4:4]</code> produce? What about <code>data[3:3, :]</code>?</p></li>
+<ol>
+<li>What is the maximum inflammation for all patients over the first 10 days?</li>
+<li>What is the average maximum inflammation for all patients over all days?</li>
+<ul>
+<li>First try to calculate this in two steps: (1) calculate the maximum inflammation for all patients and assign the result to a variable and (2) determine the maximum value of the resulting vector.</li>
+<li>Bonus: Try to calculate the average maximum inflammation for all patients in one line.</li>
+</ul>
+</ul>
 </ol>
 </div>
 
