@@ -45,7 +45,7 @@ title: WashU Room 2 Schedule
 </tr>
 <tr>
     <td> 1:00-2:30     </td>
-    <td>  Git Local  </td>
+    <td> < href="{{site.github.url}}/lessons/git-notebook/git-for-scientists.slides.html "> Git - part 1  </a></td>
     <td> Ariel Rokem </td>
 </tr>
 <tr>
@@ -55,7 +55,7 @@ title: WashU Room 2 Schedule
 </tr>
 <tr>
     <td> 2:45-4:30      </td>
-    <td>  Git Remote</td>
+    <td>  < href="{{site.github.url}}/lessons/git-notebook/git-for-scientists.slides.html "> Git - part 2 </a></td>
     <td> Ariel Rokem </td>
 </tr>
 <tr>
