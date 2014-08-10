@@ -20,7 +20,7 @@ title: WashU Room 2 Schedule
 </tr>
 <tr>
     <td> 9:00-9:30      </td>
-    <td>  Introduction</td>
+    <td>  <a href="{{site.github.url}}/slides/intro.html">Introduction</a> </td>
     <td> Ariel Rokem </td>
 </tr>
 <tr>
