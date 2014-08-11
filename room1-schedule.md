@@ -22,7 +22,7 @@ title: WashU Room 1 Schedule
 </tr>
 <tr>
     <td> 9:30-10:30     </td>
-    <td><a href="http://software-carpentry.org/v5/novice/shell/00-intro.html">Shell</a> </td>
+    <td><a href="{{site.github.url}}/novice/shell/00-intro.md">Shell</a> </td>
     <td> Neem Serra </td>
 </tr>
 <tr>
