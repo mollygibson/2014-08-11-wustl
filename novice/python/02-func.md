@@ -185,6 +185,10 @@ print &#39;absolute zero in Celsius:&#39;, kelvin_to_celsius(0.0)</pre>
 </div>
 
 
+
+### Challenge
+
+<div class="challenges">
 <div class="">
 <p>What about converting Fahrenheit to Celsius? We could write out the formula, but we don't need to. Instead, we can <a href="../../gloss.html#function-composition">compose</a> the two functions we have already created:</p>
 </div>
@@ -192,9 +196,8 @@ print &#39;absolute zero in Celsius:&#39;, kelvin_to_celsius(0.0)</pre>
 
 <div class="in">
 <pre>def fahr_to_celsius(temp):
-    temp_k = fahr_to_kelvin(temp)
-    result = kelvin_to_celsius(temp_k)
-    return result
+    # Challenge: fill in this function
+    # Hint: use both of the functions we just defined
 
 print &#39;freezing point of water in Celsius:&#39;, fahr_to_celsius(32.0)</pre>
 </div>
@@ -203,24 +206,12 @@ print &#39;freezing point of water in Celsius:&#39;, fahr_to_celsius(32.0)</pre>
 <pre>freezing point of water in Celsius: 0.0
 </pre>
 </div>
-
+</div>
 
 <div class="">
 <p>This is our first taste of how larger programs are built: we define basic operations, then combine them in ever-large chunks to get the effect we want. Real-life functions will usually be larger than the ones shown here—typically half a dozen to a few dozen lines—but they shouldn't ever be much longer than that, or the next person who reads it won't be able to understand what's going on.</p>
 </div>
 
-
-<div class="challenges">
-<h4 id="challenges">Challenges</h4>
-<ol style="list-style-type: decimal">
-<li><p>&quot;Adding&quot; two strings produces their concatention: <code>'a' + 'b'</code> is <code>'ab'</code>. Write a function called <code>fence</code> that takes two parameters called <code>original</code> and <code>wrapper</code> and returns a new string that has the wrapper character at the beginning and end of the original:</p>
-<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">print</span> fence(<span class="st">&#39;name&#39;</span>, <span class="st">&#39;*&#39;</span>)
-*name*</code></pre></li>
-<li><p>If the variable <code>s</code> refers to a string, then <code>s[0]</code> is the string's first character and <code>s[-1]</code> is its last. Write a function called <code>outer</code> that returns a string made up of just the first and last characters of its input:</p>
-<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">print</span> outer(<span class="st">&#39;helium&#39;</span>)
-hm</code></pre></li>
-</ol>
-</div>
 
 ### The Call Stack
 
@@ -374,13 +365,6 @@ print &#39;span of data:&#39;, span(diff)</pre>
 </div>
 
 
-<div class="challenges">
-<h4 id="challenges">Challenges</h4>
-<ol style="list-style-type: decimal">
-<li>We previously wrote functions called <code>fence</code> and <code>outer</code>. Draw a diagram showing how the call stack changes when we run the following: <sub>~</sub>python print outer(fence('carbon', '+')) <sub>~</sub></li>
-</ol>
-</div>
-
 ### Testing and Documenting
 
 
@@ -453,7 +437,7 @@ min, mean, and and max of centered data are: -6.14875 -3.49054118942e-15 13.8512
 
 
 <div class="">
-<p>That seems almost right: the original mean was about 6.1, so the lower bound from zero is how about -6.1. The mean of the centered data isn't quite zero—we'll explore why not in the challenges—but it's pretty close. We can even go further and check that the standard deviation hasn't changed:</p>
+<p>That seems almost right: the original mean was about 6.1, so the lower bound from zero is how about -6.1. The mean of the centered data isn't quite zero, but it's pretty close. We can even go further and check that the standard deviation hasn't changed:</p>
 </div>
 
 
@@ -550,13 +534,15 @@ center(data, desired)
 </pre>
 </div>
 
-
+# Challenges
 <div class="challenges">
-<h4 id="challenges">Challenges</h4>
 <ol style="list-style-type: decimal">
-<li><p>Write a function called <code>analyze</code> that takes a filename as a parameter and displays the three graphs produced in the <a href="01-numpy.ipynb">previous lesson</a>, i.e., <code>analyze('inflammation-01.csv')</code> should produce the graphs already shown, while <code>analyze('inflammation-02.csv')</code> should produce corresponding graphs for the second data set. Be sure to give your function a docstring.</p></li>
-<li><p>Write a function <code>rescale</code> that takes an array as input and returns a corresponding array of values scaled to lie in the range 0.0 to 1.0. (If <span class="math">\(L\)</span> and <span class="math">\(H\)</span> are the lowest and highest values in the original array, then the replacement for a value <span class="math">\(v\)</span> should be <span class="math">\((v-L) / (H-L)\)</span>.) Be sure to give the function a docstring.</p></li>
-<li><p>Run the commands <code>help(numpy.arange)</code> and <code>help(numpy.linspace)</code> to see how to use these functions to generate regularly-spaced values, then use those values to test your <code>rescale</code> function.</p></li>
+<li><p>Write a function called <code>analyze</code> that takes a filename as a parameter and displays the three graphs produced in the <a href="01-numpy.ipynb">previous lesson</a>, i.e., <code>analyze('inflammation-01.csv')</code> should produce the graphs already shown, while <code>analyze('inflammation-02.csv')</code> should produce corresponding graphs for the second data set. <b>Be sure to give your function a docstring</b> and test the output of help(analyze).</p></li>
+
+<li><p>Write a function <code>normalize</code> that takes an array as input and returns a corresponding array of values scaled to lie in the range 0.0 to 1.0. <b>Be sure to give your function a docstring</b> and test the output of help(normalize).</p></li><p>
+<ul>
+<li>If <code>L</code> and <code>H</code> are the lowest and highest values in the original array, then the replacement value (<code>v</code>) should be <code>((v-L)/()H-L))</code>. </li>
+</ul>
 </ol>
 </div>
 
@@ -812,9 +798,8 @@ loadtxt(fname, dtype=&lt;type &#39;float&#39;&gt;, comments=&#39;#&#39;, delimit
 <p>then the filename is assigned to <code>fname</code> (which is what we want), but the delimiter string <code>','</code> is assigned to <code>dtype</code> rather than <code>delimiter</code>, because <code>dtype</code> is the second parameter in the list. That's why we don't have to provide <code>fname=</code> for the filename, but <em>do</em> have to provide <code>delimiter=</code> for the second parameter.</p>
 </div>
 
-
+# Challenges
 <div class="challenges">
-<h4 id="challenges">Challenges</h4>
 <ol style="list-style-type: decimal">
 <li>Rewrite the <code>normalize</code> function so that it scales data to lie between 0.0 and 1.0 by default, but will allow the caller to specify lower and upper bounds if they want. Compare your implementation to your neighbor's: do the two functions always behave the same way?</li>
 </ol>
