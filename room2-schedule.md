@@ -25,7 +25,7 @@ title: WashU Room 2 Schedule
 </tr>
 <tr>
     <td> 9:30-10:30     </td>
-    <td>  Shell  </td>
+    <td>  <a href="{{site.github.url}}/novice/shell/index.html"> Shell</a>  </td>
     <td> Dan Chen </td>
 </tr>
 <tr>
@@ -35,7 +35,7 @@ title: WashU Room 2 Schedule
 </tr>
 <tr>
     <td> 10:45-12:00    </td>
-    <td>  Shell  </td>
+    <td>  <a href="{{site.github.url}}/novice/shell/index.html"> Shell</a>  </td>
     <td> Dan Chen </td>
 </tr>
 <tr>
