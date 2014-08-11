@@ -109,7 +109,8 @@ title: WashU Room 1 Schedule
 </tr>
 <tr>
     <td> 2:45-4:15      </td>
-    <td>  Putting it All Together</td>
+    <td>  <a href="{{site.github.url}}/novice/reproducible_workflow/index.html"> Putting it
+    all together </a> </td>
     <td> Ariel Rokem </td>
 </tr>
 <tr>
