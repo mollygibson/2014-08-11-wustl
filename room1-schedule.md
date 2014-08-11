@@ -22,7 +22,7 @@ title: WashU Room 1 Schedule
 </tr>
 <tr>
     <td> 9:30-10:30     </td>
-    <td>  Shell  </td>
+    <td><a href="{{site.github.url}}/novice/shell/index.md">Shell</a> </td>
     <td> Neem Serra </td>
 </tr>
 <tr>
