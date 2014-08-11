@@ -445,16 +445,16 @@ you?) as well so that you can remember how it was created.
 
 In test_analyze_inflammation, we use the following code:
 
-   import sys
-   sys.path.append('/Users/arokem/projects/inflammation/src/')
-   import analyze_inflammation as ana
+    import sys
+    sys.path.append('/Users/arokem/projects/inflammation/src/')
+    import analyze_inflammation as ana
 
-   import numpy as np
+    import numpy as np
 
-   def test_center():
-        input = np.array([1, 2, 3])
-    	output = ana.center(input)
-	assert(np.all(output == np.array([-1, 0, 1])))
+    def test_center():
+         input = np.array([1, 2, 3])
+	 output = ana.center(input)
+	 assert(np.all(output == np.array([-1, 0, 1])))
 
 
 Let's break this down. The first few lines are all about importing the module
