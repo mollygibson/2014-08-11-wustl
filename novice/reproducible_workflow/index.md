@@ -4,15 +4,12 @@ root: ../..
 title: Creating a Reproducible Workflow
 ---
 
-<div class="objectives">
-<h4 id="objectives">Objectives</h4>
-<ul>
-<li> Learn about reproducible research </li>
-<li> Organize a research project to be reproducible </li> 
-<li> Write a python module to analyze data and visualize it </li>
-<li> Create a toy example of a push-button analysis that is fully reproducible </li>
-</ul>
-</div><div class="out">
+Objectives
+---------
+- Learn about reproducible research.
+- Organize a research project to be reproducible.
+- Write a python module to analyze data and visualize it.
+- Use the best-practices we've 
 
 Introduction
 ------------
@@ -25,9 +22,9 @@ going to bring it all back to science by discussing reproducibility.
 What does it mean for science to be reproducible? In the words of Buckheit and
 Donoho (2005):
 
-<em>"An article about a computational result is advertising, not
+**"An article about a computational result is advertising, not
 scholarship. The actual scholarship is the full software environment code and
-data, that produced the result." </em>
+data, that produced the result."**
 
 Victoria Stodden has written extensively about the idea of
 reproducibility in scientific software - you may want to look up [some of her
