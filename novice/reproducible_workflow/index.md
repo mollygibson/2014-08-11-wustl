@@ -77,8 +77,8 @@ for this process. You also might want to review [William Noble's
 paper](http://dx.doi.org/10.1371/journal.pcbi.1000424) on this topic for more
 ideas.
 
-1.	Setting up the project directory
-------------------------------------
+Set up the project directory
+-------------------------
 
 Let's create a project (a reasonably self-contained set of code, data, and 
 results to answer a discrete scientific question) that will compare
@@ -106,8 +106,8 @@ subdirectories to help keep things organized.
 
 For bonus points, do this all from the command line.
 
-2.	Initialize a Git repository
--------------------------------
+## 1. Initialize a Git repository
+-------------------------
 
 Since we want to use version control to track the development of our project, 
 we'll start off right away by initializing an empty Git repository within this 
@@ -117,8 +117,8 @@ directory. To do this, open a Terminal window, navigate to the main
 As you add things to the project directory, and modify old things, you'll want 
 to frequently commit your changes as we discussed in the Git tutorial.
 
-3.	Add raw data
-----------------
+## 2. Add raw data
+-----------------
 
 Often, we start a project with a particular data file, or set of data files. In 
 this case, we have the files `inflammation-*.csv`, which contains the records 
@@ -173,8 +173,8 @@ At this point, your project directory should look like this:
 
 Commit both the data and README files to your git repository.
 
-4. Write code to perform analysis
----------------------------------
+## 3. Write code to perform analysis
+-------------------------------
 
 Now for the real work - writing the code and notebooks that perform our analysis. 
 
@@ -189,17 +189,19 @@ pasting the code from our lesson about loops into a file that we will call
 `analyze_inflammation.py`. We'll combine together a few of the things we did today, to
 demonstrate the general ideas :
 
+```python
+
     import os
     import numpy as np
     from matplotlib import pyplot as plt
 
     def center(data, desired=0.0):
-       '''Return a new array containing the original data centered around the
-    	desired value (0 by default).
+         """Return a new array containing the original data centered around the
+         desired value (0 by default).
 
-	Example: center([1, 2, 3], 0) => [-1, 0, 1]'''
+	 Example: center([1, 2, 3], 0) => [-1, 0, 1]"""
 
-	return (data -data.mean()) + desired
+	 return (data -data.mean()) + desired
     
     def plot_data(filename):
     	data = np.loadtxt(fname=filename, delimiter=',')
@@ -227,22 +229,24 @@ demonstrate the general ideas :
         for f in filenames:
             print f
             plot_data(f)
+
+```
     
-    
-Note that, by itself, the code in our `analyze_inflammation.py` file doesn't actually 
-generate any results for us - this file just contains the core functions that 
-we have written to perform our analysis. Later on, we'll write notebooks that
-produce analysis results and figures. It is generally good practice to keep
-your actual analysis code in a separate  module where it can easily be tested
-and reused later on. This separation of concerns also supports a mental
-separation of roles - the module is where you write and test the guts of your
-code (the stuff that "does science") whereas the notebooks (or alternatively, a
-`runall` script, are just the parts of the code that take this "science" and applies 
-it to your particular data set to generate your particular results (the stuff 
-that spits out "these results"). If you wanted to perform the same analysis on 
-a different data set or with a different set of input parameters, for example, 
-you should be able to accomplish that by modifying just the notebooks/`runall`
-file. We'll look at that later.
+Note that, by itself, the code in our `analyze_inflammation.py` file doesn't
+actually generate any results for us - this file just contains the core
+function definitions for the functions that we have written to perform our
+analysis. Later on, we'll write notebooks that produce analysis results and
+figures. It is generally good practice to keep your actual analysis code in a
+separate module where it can easily be tested and reused later on. This
+separation of concerns also supports a mental separation of roles - the module
+is where you write and test the guts of your code (the stuff that "does
+science") whereas the notebooks (or alternatively, a `runall` script, are just
+the parts of the code that take this "science" and applies it to your
+particular data set to generate your particular results (the stuff that spits
+out "these results"). If you wanted to perform the same analysis on a different
+data set or with a different set of input parameters, for example, you should
+be able to accomplish that by modifying just the notebooks/`runall` file. We'll
+look at that later.
 
 Normally, you'd spend days/weeks/months working in the `src` directory, writing
 code and tests, generating new ideas and new results, looking at the results,
@@ -284,9 +288,13 @@ levels, ranging from the smallest to the broadest scale.
 
 At the smallest scale are line-by-line comments on your code, such as
 
+```python
+
     # We only analyze individuals with smaller than average inflammation:
     if data[indv, :].mean() < ave_inflammation:
         first_ten = data[indv, 0:10].mean()
+	
+```
 
 Code comments such as these should generally be restricted to one line, 
 although two or three lines would be OK for cases that require more 
@@ -296,13 +304,22 @@ above comment, for example, explains the purpose of the subsequent lines. In
 contrast, the comment below is basically useless, as it simply repeats what 
 anyone reading the code could have already told you.
 
+```python
+
     # Set x to zero
     x = 0
 
+```
+
 A better option would be
+
+
+```python
 
     # Initialize running count of individuals
     x = 0
+
+```
 
 There's an art to determining how many comments are too many. It is good to be
 rather verbose, especially when doing rather complicated stuff. It will happen
@@ -329,6 +346,8 @@ projects (including numpy/scipy/...), and you will get used to expecting this
 format.
 
 Let's make over the docstring that we have for the `center` function:
+
+```python
 
     def center(data, desired=0.0):
     	"""Return a new array containing the original data centered around the
@@ -357,14 +376,16 @@ Let's make over the docstring that we have for the `center` function:
         mean.
 
 	"""
+	
+```
 
-Note a few important features of this docstring. First, it's indented, just 
-like all of the other code within a function. Second, it starts immediately 
-after the line defining the function, and starts and ends with three quotation 
-marks (which, in Python, defines a multi-line string). Third, the first line of 
-the docstring is a single line describing the high level purpose and/or 
-function of the function. The rest of the docstring structure is not as 
-standardized, but the above example is a basic form that's common in scientific 
+Note a few important features of this docstring. First, it's indented, just
+like all of the other code within a function. Second, it starts immediately
+after the line defining the function, and starts and ends with three quotation
+marks (which, in Python, defines a multi-line string). Third, the first line of
+the docstring is a single line describing the high level purpose and/or
+function of the function. The rest of the docstring structure is not as
+standardized, but the above example is a basic form that's common in scientific
 Python packages.
 
 
@@ -411,7 +432,8 @@ packages. The websites documenting [core Python](http://docs.python.org/2/),
 Sphinx in use as well as some general documentation styles that you might wish 
 to review.
 
-### Testing
+## 4. Test your code
+-----------------
 
 OK, back to our project. We now have the file `analyze_inflammation.py` in our `src` 
 directory. Now lets create a `tests` directory under that, and create a new
@@ -439,6 +461,7 @@ you?) as well so that you can remember how it was created.
 
 In test_analyze_inflammation, we use the following code:
 
+```python
 
    import sys
    sys.path.append('/Users/arokem/projects/inflammation/src/')
@@ -450,6 +473,8 @@ In test_analyze_inflammation, we use the following code:
         input = np.array([1, 2, 3])
     	output = ana.center(input)
 	assert(np.all(output == np.array([-1, 0, 1])))
+
+```
 
 Let's break this down. The first few lines are all about importing the module
 that you have created. There is a way to get your code into the general system
@@ -471,10 +496,12 @@ functions that read this data, but no more and that contain contrived, very
 simple data, for which you can easily cacluclate by hand what the answer should
 be. 
 	
-5. Analyzing your data and getting to the really reproducible paper 
+## 5. Analyze your data and get a really reproducible paper 
 ----------------------------------------------------
 
-
+Ideally, every claim in the paper, and every figure in the paper will be
+supported by a full chain of custody. This will make the paper really
+reproducible 
 
 Now that we have our core functions and tests in place, it's time to create the 
 "button" for our push-button workflow - the `runall.py` script. The idea is 
