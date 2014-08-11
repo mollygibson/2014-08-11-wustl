@@ -189,8 +189,6 @@ pasting the code from our lesson about loops into a file that we will call
 `analyze_inflammation.py`. We'll combine together a few of the things we did today, to
 demonstrate the general ideas :
 
-```python
-
     import os
     import numpy as np
     from matplotlib import pyplot as plt
@@ -230,7 +228,6 @@ demonstrate the general ideas :
             print f
             plot_data(f)
 
-```
     
 Note that, by itself, the code in our `analyze_inflammation.py` file doesn't
 actually generate any results for us - this file just contains the core
@@ -288,13 +285,10 @@ levels, ranging from the smallest to the broadest scale.
 
 At the smallest scale are line-by-line comments on your code, such as
 
-```python
 
     # We only analyze individuals with smaller than average inflammation:
     if data[indv, :].mean() < ave_inflammation:
         first_ten = data[indv, 0:10].mean()
-	
-```
 
 Code comments such as these should generally be restricted to one line, 
 although two or three lines would be OK for cases that require more 
@@ -304,22 +298,16 @@ above comment, for example, explains the purpose of the subsequent lines. In
 contrast, the comment below is basically useless, as it simply repeats what 
 anyone reading the code could have already told you.
 
-```python
-
     # Set x to zero
     x = 0
 
-```
 
 A better option would be
 
 
-```python
-
     # Initialize running count of individuals
     x = 0
 
-```
 
 There's an art to determining how many comments are too many. It is good to be
 rather verbose, especially when doing rather complicated stuff. It will happen
@@ -341,13 +329,11 @@ and as we previously discussed, a nice feature of docstrings is that they
 integrate nicely into the ways of getting help in IPython (recall the `?` help
 function), as well as with other documentation tools such as Sphinx that we'll
 mention later. I recommend using the [numpy docstring
-standards](http://XXX). This is the standard used by many scientific python
+standards](https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt#docstring-standard). This is the standard used by many scientific python
 projects (including numpy/scipy/...), and you will get used to expecting this
 format.
 
 Let's make over the docstring that we have for the `center` function:
-
-```python
 
     def center(data, desired=0.0):
     	"""Return a new array containing the original data centered around the
@@ -376,8 +362,6 @@ Let's make over the docstring that we have for the `center` function:
         mean.
 
 	"""
-	
-```
 
 Note a few important features of this docstring. First, it's indented, just
 like all of the other code within a function. Second, it starts immediately
@@ -461,8 +445,6 @@ you?) as well so that you can remember how it was created.
 
 In test_analyze_inflammation, we use the following code:
 
-```python
-
    import sys
    sys.path.append('/Users/arokem/projects/inflammation/src/')
    import analyze_inflammation as ana
@@ -474,7 +456,6 @@ In test_analyze_inflammation, we use the following code:
     	output = ana.center(input)
 	assert(np.all(output == np.array([-1, 0, 1])))
 
-```
 
 Let's break this down. The first few lines are all about importing the module
 that you have created. There is a way to get your code into the general system
@@ -501,187 +482,12 @@ be.
 
 Ideally, every claim in the paper, and every figure in the paper will be
 supported by a full chain of custody. This will make the paper really
-reproducible 
+reproducible for anyone who reads it.
 
-Now that we have our core functions and tests in place, it's time to create the 
-"button" for our push-button workflow - the `runall.py` script. The idea is 
-that you will be able to start with an empty results directory, execute the 
-line `python runall.py` in Terminal, and have our table and figure saved in the 
-`results` directory.
-
-Create a new text file called `runall.py` and copy and paste the following code 
-into it.
-
-	#!/usr/bin/env python
-
-	'''
-	Script to create all results for inflammation project.
-	'''
-
-	import numpy as np
-	import matplotlib.mlab as ml
-	import matplotlib.pyplot as plt
-	from mean_sightings import get_sightings
-
-
-	# ------------------------------------------------------------------------
-	# Declare variables
-	# ------------------------------------------------------------------------
-
-	# Set paths to data and results directories. Note that this method of
-	# relative paths only works on *nix - for Windows, see os.path module.
-	data_dir = '../data/'
-	results_dir = '../results/'
-
-	# Set name of data file, table, and figure
-	data_name = 'sightings_tab_lg.csv'
-	table_name = 'spp_table.csv'
-	fig_name = 'spp_fig.png'
-
-	# Set names of species to count
-	spp_names = ['Fox', 'Wolf', 'Grizzly', 'Wolverine']
-
-
-	# ------------------------------------------------------------------------
-	# Perform analysis 
-	# ------------------------------------------------------------------------
-
-	# Declare empty list to hold counts of records
-	spp_recs = []
-
-	# Get total number of records for each species
-	for spp in spp_names:
-		totalrecs, meancount = get_sightings(data_dir + data_name, spp)
-		spp_recs.append(totalrecs)
-
-	print spp_names
-	print spp_recs
-
-We won't go over this code in too much detail, as you should now have the 
-background to understand what's happening on your own. Right up front, after 
-importing the necessary modules, we have set up variables that define the 
-locations of the `data` and `results` directories (relative to the `src` 
-directory where our `runall.py` file is located) as well as the names of our 
-input data file and the table and figure that we will create. We also declared 
-the list of species names here. The purpose of declaring these variables up 
-front, rather than just typing these names into the code later on where they 
-appear, is to make it easy to change these later on if, for example, we want to 
-analyze a different set of species or use a different data file.
-
-After those declarations, we simply set up a `for` loop that goes through each 
-of our species names and uses our previously-written function to get the number 
-of records for that species. At the very end, we print out the lists of species 
-names and records just to have a look at the output.
-
-Now, go back to your Terminal window, navigate to the `src` directory, and run 
-the command `python runall.py`. You should see the species names and records 
-printed in your Terminal window - this shows that our code is running without 
-errors to this point.
-
-Now let's add some code to save the table. Erase the print lines from the 
-bottom of `runall.py`, and add the text below.
-
-	# ------------------------------------------------------------------------
-	# Save results as table 
-	# ------------------------------------------------------------------------
-
-	# Put two lists into a recarray table
-	table = np.array(zip(spp_names, spp_recs),
-					 dtype=[('species', 'S12'), ('recs', int)])
-
-	# Save recarray as csv
-	ml.rec2csv(table, results_dir + table_name)
-
-This code simply takes our two lists, the list of species names and of records, 
-and creates a record array from them. The syntax to do this might seem 
-confusing, and at this point, it's probably just best to start by memorizing it 
-as the "recipe" that one uses to turn several lists into a record array. The 
-`dtype` variable is used to name each "column" in our recarray and to tell 
-Python the format of each column. The first column, called 'species', is given 
-the format 'S12', which means a string of up to 12 characters. The second 
-column, recs, is given the format int, which stands for an integer. We then use 
-a helper function from `mlab` to save our recarray as a csv file.
-
-Once again, go back to your Terminal window and execute this file. Check to see 
-that the csv file was correctly created and saved in the `results` directory.
-
-Last but not least, let's add some code to make and save a bar chart that 
-visually displays the data that's in our table. Add the code below to the 
-runall file.
-
-	# -----------------------------------------------------------------------
-	# Save results as figure 
-	# -----------------------------------------------------------------------
-
-	# Set up figure with one axis
-	fig, ax = plt.subplots(1, 1)
-
-	# Create bar chart: args are location of left edge, height, and width of bar
-	ax.bar([0,1,2,3], spp_recs, 0.8)
-
-	# Place tick marks in center of each bar
-	ax.set_xticks([0.4, 1.4, 2.4, 3.4])
-
-	# Set limits to give some white space on either side of first/last bar 
-	ax.set_xlim([-0.2, 4])
-
-	# Add species names to x axis
-	ax.set_xticklabels(spp_names)
-
-	# Save figure
-	fig.savefig(results_dir + fig_name)
-
-This code does just what the comments say that it does. The resulting figure 
-looks OK, and you would probably want to spend more time adding additional 
-lines here to adjust the formatting.
-
-Don't forget to add `runall.py` to your git repo.
-
-6. Run the push button analysis
--------------------------------
-
-Now with everything in place, we're ready for the magic. Just for good measure, 
-delete any files that are hanging around in your `results` directory. Then, 
-execute `python runall.py` from your `src` subdirectory and marvel at your 
-fully reproducible workflow! (If you've been making a lot of changes to your 
-code, and aren't quite sure what's in your `results` directory, you may want to 
-periodically clear out this folder and re-run everything to make sure that 
-everything is regenerating properly.)
-
-At this point, your directory should look like the below.
-
-	
-    |-- data
-    |   |-- README.txt
-    |   |-- sightings_tab_lg.csv
-    |-- man
-    |-- results
-    |   |-- spp_table.csv
-    |   |-- spp_fig.png
-    |-- src
-    |   |-- mean_sightings.py
-    |   |-- runall.py
-    |   |-- sightings_tab_sm.csv
-    |   |-- test_mean_sightings.py
-
-At this point, a natural question to ask is whether you need to add the 
-contents of your `results` directory to your git repository. The answer should 
-be obvious - you do not need to do this, since the files in your `results` 
-directory contain no unique information on their own. Everything you need to 
-create them is contained in the `data` and `src` directories. One exception to 
-this, though, might be if your analysis takes a very long time to run and the 
-outputs are fairly small in size, in which case you may want to periodically 
-commit (so that you can easily recover) the results associated with 
-"intermediate" versions of your code.
-
-While many of your projects will be nearly this simple, some will be more 
-complex, sometimes significantly so. You will eventually come across the need 
-to deal with modules that are shared across multiple projects, running the same 
-analysis on multiple sets of parameters simultaneously, running analyses on 
-multiple computers, etc. While we don't have time to go into these extra bits 
-in detail, feel free to ask the instructors about any specific issues that you 
-expect to encounter in the near future. Rest assuered that no matter how 
-complicated your situation is, Python will provide you with a (relatively) 
-efficient and robust way to accomplish your goals. 
-
-And that just about does it. Good luck!
+A recent example is a paper by Waskom et al. in the [Journal of
+Neuroscience](http://www.jneurosci.org/content/34/32/10743). This paper has a
+[github repository](https://github.com/WagnerLabPapers/Waskom_JNeurosci_2014)
+that contains all of the code that was used to reach the conclusions in the
+paper. For example,
+[this](http://nbviewer.ipython.org/github/WagnerLabPapers/Waskom_JNeurosci_2014/blob/master/Searchlight_Analysis.ipynb)
+is figure 5 in the paper.
