@@ -135,12 +135,12 @@ else:
 </pre>
 </div>
 
-
 <div class="">
 <p>In this case, &quot;either&quot; means &quot;either or both&quot;, not &quot;either one or the other but not both&quot;.</p>
 </div>
 
-### Challenges
+<h3>Challenges</h3>
+
 <div class="challenges">
 <ol style="list-style-type: decimal">
 <li><p><code>True</code> and <code>False</code> aren't the only values in Python that are true and false. In fact, <em>any</em> value can be used in an <code>if</code> or <code>elif</code>. After reading and running the code below, explain what the rule is for which values are considered true and which are considered false. (Note that if the body of a conditional is a single statement, we can write it on the same line as the <code>if</code>.)</p>
@@ -154,7 +154,7 @@ else:
 </ol>
 </div>
 
-### Nesting
+<h3>Nesting</h3>
 
 
 <div class="">
@@ -236,7 +236,7 @@ de
 <p>This is our first hand-made data visualization: the colors show where <code>x</code> is less than, equal to, or greater than <code>y</code>.</p>
 </div>
 
-### Challenges
+<h3>Challenges</h3>
 <div class="challenges">
 
 <ol style="list-style-type: decimal">
@@ -250,7 +250,7 @@ x *= <span class="dv">3</span> <span class="co"># multiply x by 3</span>
 </ol>
 </div>
 
-### Making Choices Analyzing Inflammation
+<h3>Making Choices Analyzing Inflammation</h3>
 
 
 <div class="">
@@ -286,7 +286,7 @@ for indv in range(0,data.shape[0]):
 
 <p>Note: numpy arrays have specific built-in functions for looping through elements in the array, however, this is a little easier to relate back to what we have talked about today.</p>
 
-### Challenges
+<h3>Challenges</h3>
 
 <div class="challenges">
 <ol style="list-style-type: decimal">
