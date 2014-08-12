@@ -387,8 +387,7 @@ center(data, desired)
 <div class="challenges">
 <ol style="list-style-type: decimal">
 <li><p>Write a function called <code>analyze</code> that takes a filename as a parameter and displays the three graphs produced in the <a href="01-numpy.ipynb">previous lesson</a>, i.e., <code>analyze('inflammation-01.csv')</code> should produce the graphs already shown, while <code>analyze('inflammation-02.csv')</code> should produce corresponding graphs for the second data set. <b>Be sure to give your function a docstring</b> and test the output of help(analyze).</p></li>
-
-<li><p>Write a function <code>normalize</code> that takes an array as input and returns a corresponding array of values scaled to lie in the range 0.0 to 1.0. <b>Be sure to give your function a docstring</b> and test the output of help(normalize).</p></li><p>
+<li><p>Write a function <code>normalize</code> that takes an array as input and returns a corresponding array of values scaled to lie in the range 0.0 to 1.0. <b>Be sure to give your function a docstring</b> and test the output of help(normalize).</p></li>
 <ul>
 <li>If <code>L</code> and <code>H</code> are the lowest and highest values in the original array, then the replacement value (<code>v</code>) should be <code>((v-L)/(H-L))</code>. </li>
 </ul>
