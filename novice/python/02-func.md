@@ -213,158 +213,6 @@ print &#39;freezing point of water in Celsius:&#39;, fahr_to_celsius(32.0)</pre>
 </div>
 
 
-### The Call Stack
-
-
-<div class="">
-<p>Let's take a closer look at what happens when we call <code>fahr_to_celsius(32.0)</code>. To make things clearer, we'll start by putting the initial value 32.0 in a variable and store the final result in one as well:</p>
-</div>
-
-
-<div class="in">
-<pre>original = 32.0
-final = fahr_to_celsius(original)</pre>
-</div>
-
-
-<div class="">
-<p>The diagram below shows what memory looks like after the first line has been executed:</p>
-</div>
-
-
-<div class="">
-<p><img src="img/python-call-stack-01.svg" alt="Call Stack (Initial State)" /></p>
-</div>
-
-
-<div class="">
-<p>When we call <code>fahr_to_celsius</code>, Python <em>doesn't</em> create the variable <code>temp</code> right away. Instead, it creates something called a <a href="../../gloss.html#stack-frame">stack frame</a> to keep track of the variables defined by <code>fahr_to_kelvin</code>. Initially, this stack frame only holds the value of <code>temp</code>:</p>
-</div>
-
-
-<div class="">
-<p><img src="img/python-call-stack-02.svg" alt="Call Stack Immediately After First Function Call" /></p>
-</div>
-
-
-<div class="">
-<p>When we call <code>fahr_to_kelvin</code> inside <code>fahr_to_celsius</code>, Python creates another stack frame to hold <code>fahr_to_kelvin</code>'s variables:</p>
-</div>
-
-
-<div class="">
-<p><img src="img/python-call-stack-03.svg" alt="Call Stack During First Nested Function Call" /></p>
-</div>
-
-
-<div class="">
-<p>It does this because there are now two variables in play called <code>temp</code>: the parameter to <code>fahr_to_celsius</code>, and the parameter to <code>fahr_to_kelvin</code>. Having two variables with the same name in the same part of the program would be ambiguous, so Python (and every other modern programming language) creates a new stack frame for each function call to keep that function's variables separate from those defined by other functions.</p>
-<p>When the call to <code>fahr_to_kelvin</code> returns a value, Python throws away <code>fahr_to_kelvin</code>'s stack frame and creates a new variable in the stack frame for <code>fahr_to_celsius</code> to hold the temperature in Kelvin:</p>
-</div>
-
-
-<div class="">
-<p><img src="img/python-call-stack-04.svg" alt="Call Stack After Return From First Nested Function Call" /></p>
-</div>
-
-
-<div class="">
-<p>It then calls <code>kelvin_to_celsius</code>, which means it creates a stack frame to hold that function's variables:</p>
-</div>
-
-
-<div class="">
-<p><img src="img/python-call-stack-05.svg" alt="Call Stack During Call to Second Nested Function" /></p>
-</div>
-
-
-<div class="">
-<p>Once again, Python throws away that stack frame when <code>kelvin_to_celsius</code> is done and creates the variable <code>result</code> in the stack frame for <code>fahr_to_celsius</code>:</p>
-</div>
-
-
-<div class="">
-<p><img src="img/python-call-stack-06.svg" alt="Call Stack After Second Nested Function Returns" /></p>
-</div>
-
-
-<div class="">
-<p>Finally, when <code>fahr_to_celsius</code> is done, Python throws away <em>its</em> stack frame and puts its result in a new variable called <code>final</code> that lives in the stack frame we started with:</p>
-</div>
-
-
-<div class="">
-<p><img src="img/python-call-stack-07.svg" alt="Call Stack After All Functions Have Finished" /></p>
-</div>
-
-
-<div class="">
-<p>This final stack frame is always there; it holds the variables we defined outside the functions in our code. What it <em>doesn't</em> hold is the variables that were in the various stack frames. If we try to get the value of <code>temp</code> after our functions have finished running, Python tells us that there's no such thing:</p>
-</div>
-
-
-<div class="in">
-<pre>print &#39;final value of temp after all function calls:&#39;, temp</pre>
-</div>
-
-<div class="out">
-<pre>---------------------------------------------------------------------------
-NameError                                 Traceback (most recent call last)
-&lt;ipython-input-12-ffd9b4dbd5f1&gt; in &lt;module&gt;()
-----&gt; 1 print &#39;final value of temp after all function calls:&#39;, temp
-
-NameError: name &#39;temp&#39; is not definedfinal value of temp after all function calls:</pre>
-</div>
-
-
-<div class="">
-<p>Why go to all this trouble? Well, here's a function called <code>span</code> that calculates the difference between the mininum and maximum values in an array:</p>
-</div>
-
-
-<div class="in">
-<pre>import numpy
-
-def span(a):
-    diff = a.max() - a.min()
-    return diff
-
-data = numpy.loadtxt(fname=&#39;inflammation-01.csv&#39;, delimiter=&#39;,&#39;)
-print &#39;span of data&#39;, span(data)</pre>
-</div>
-
-<div class="out">
-<pre> span of data 20.0
-</pre>
-</div>
-
-
-<div class="">
-<p>Notice that <code>span</code> assigns a value to a variable called <code>diff</code>. We might very well use a variable with the same name to hold data:</p>
-</div>
-
-
-<div class="in">
-<pre>diff = numpy.loadtxt(fname=&#39;inflammation-01.csv&#39;, delimiter=&#39;,&#39;)
-print &#39;span of data:&#39;, span(diff)</pre>
-</div>
-
-<div class="out">
-<pre>span of data: 20.0
-</pre>
-</div>
-
-
-<div class="">
-<p>We don't expect <code>diff</code> to have the value 20.0 after this function call, so the name <code>diff</code> cannot refer to the same thing inside <code>span</code> as it does in the main body of our program. And yes, we could probably choose a different name than <code>diff</code> in our main program in this case, but we don't want to have to read every line of NumPy to see what variable names its functions use before calling any of those functions, just in case they change the values of our variables.</p>
-</div>
-
-
-<div class="">
-<p>The big idea here is <a href="../../gloss.html#encapsulation">encapsulation</a>, and it's the key to writing correct, comprehensible programs. A function's job is to turn several operations into one so that we can think about a single function call instead of a dozen or a hundred statements each time we want to do something. That only works if functions don't interfere with each other; if they do, we have to pay attention to the details once again, which quickly overloads our short-term memory.</p>
-</div>
-
-
 ### Testing and Documenting
 
 
@@ -534,20 +382,20 @@ center(data, desired)
 </pre>
 </div>
 
-# Challenges
+### Challenges
+
 <div class="challenges">
 <ol style="list-style-type: decimal">
 <li><p>Write a function called <code>analyze</code> that takes a filename as a parameter and displays the three graphs produced in the <a href="01-numpy.ipynb">previous lesson</a>, i.e., <code>analyze('inflammation-01.csv')</code> should produce the graphs already shown, while <code>analyze('inflammation-02.csv')</code> should produce corresponding graphs for the second data set. <b>Be sure to give your function a docstring</b> and test the output of help(analyze).</p></li>
 
 <li><p>Write a function <code>normalize</code> that takes an array as input and returns a corresponding array of values scaled to lie in the range 0.0 to 1.0. <b>Be sure to give your function a docstring</b> and test the output of help(normalize).</p></li><p>
 <ul>
-<li>If <code>L</code> and <code>H</code> are the lowest and highest values in the original array, then the replacement value (<code>v</code>) should be <code>((v-L)/()H-L))</code>. </li>
+<li>If <code>L</code> and <code>H</code> are the lowest and highest values in the original array, then the replacement value (<code>v</code>) should be <code>((v-L)/(H-L))</code>. </li>
 </ul>
 </ol>
 </div>
 
 ### Defining Defaults
-
 
 <div class="">
 <p>We have passed parameters to functions in two ways: directly, as in <code>span(data)</code>, and by name, as in <code>numpy.loadtxt(fname='something.csv', delimiter=',')</code>. In fact, we can pass the filename to <code>loadtxt</code> without the <code>fname=</code>:</p>
